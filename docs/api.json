@@ -1,0 +1,14 @@
+{
+  "name": "Stringz documentation",
+  "desc": "A description of all api endpoints",
+  "baseURL": "http://localhost:3000",
+  "endpoints": {
+    "home": [{"method": "GET", "url": "/", "desc": "Homepage"}],
+    "users": [
+      {"method": "GET", "url": "/users", "desc": "All users"},
+      {"method": "GET", "url": "/users/:id", "desc": "Single user"},
+      {"method": "POST", "url": "/users/new", "desc": "Add user"},
+      {"method": "PUT", "url": "/users/update", "desc": "Partially update user"}
+    ]
+  }
+}
