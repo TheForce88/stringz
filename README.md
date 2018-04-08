@@ -2,6 +2,7 @@
 Stringz is an Nodejs/express/MongoDB app created to help stringing teams manage inventory and scheduling.
 
 ## Planning Deliverables:
+- [Trello](https://trello.com/b/dCLyCWKs/stringz)
 - [ERD](https://www.draw.io/#G1Mco6PszQoTaRwokO6yBLzstdqDkqMpM6)
 - [Wireframes](https://www.canva.com/design/DAC0KRaGYFg/X3hYEKdMtXNhchlPCLBkow/edit?category=tACFat6uXco)
 
