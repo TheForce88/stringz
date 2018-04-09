@@ -5,7 +5,8 @@ var mongoose = require('mongoose'),
 var UserSchema = new Schema({
   username: String,
   email: String,
-  password: String
+  password: String,
+  // racquets: [{ type: Schema.Types.ObjectId, ref: "Racquet"}]
 });
 
 UserSchema.plugin(passportLocalMongoose);

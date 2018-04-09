@@ -11,28 +11,40 @@
 // });
 
 var db = require('./models/index');
-var usersList = [
+var racquetsList = [
   {
-    username: "elaine",
-    email: "elaine@gmail.com",
-    password: "123"
+    owner: "Devin Smith",
+    brand: "Wilson",
+    tension: 56,
+    inventoryItems: [
+      "nxt 16",
+      "RPM 16"
+    ],
+    notes: "Would like to pick up on Friday",
+    img: "",
+    completed: false
   },
   {
-    username: "john",
-    email: "doe@gmail.com",
-    password: "456"
+    owner: "Kyle Flask",
+    brand: "Babolat",
+    tension: 52,
+    inventoryItems: [
+      "Alu power 16"
+    ],
+    notes: "Requests one piece stringing",
+    img: "",
+    completed: true
   }
 ];
 
-db.User.remove({}, function(err, users) {
+db.Racquet.remove({}, function(err) {
   if(err) {
     console.log('Error occured in remove', err);
   } else {
-    console.log('removed all users');
-
-    db.User.create(usersList, function(err, users) {
+    console.log('removed all racquets');
+    db.Racquet.create(racquetsList, function(err, racquets) {
       if (err) { return console.log('err', err); }
-      console.log("created", users.length, "users");
+      console.log("created", racquets.length, "racquets");
     });
   }
 });
