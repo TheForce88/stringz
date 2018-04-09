@@ -1,10 +1,17 @@
 var express = require('express'),
     app = express(),
     logger = require('morgan'),
+    methodOverride = require("method-override"),
     bodyParser = require('body-parser'),
+    cookieParser = require('cookie-parser'),
     session = require('express-session'),
     passport = require('passport'),
-    db = require('./models/index');
+    LocalStrategy = require('passport-local').Strategy;
+
+// Require models
+var db = require('./models/index'),
+  User = db.User;
+
 
 // Configure app
 app.set('views', __dirname + '/views'); // Views directory
@@ -14,24 +21,36 @@ app.use(bodyParser.urlencoded({ extended: true })); // to use req.body
 
 app.set('view engine', 'ejs');
 
+app.use(methodOverride("_method"));
+
+app.use(cookieParser());
+
 app.use(session({
   secret: 'revelio',
-  reseve: false,
-  saveUninitialized: true,
-  cookie: { secure: false }
+  resave: false,
+  saveUninitialized: false,
 }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy({
+    email: 'email',
+    password: 'password'
+  }, User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // Set CORS Headers
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Content-Length, Authorization, Accept, Token");
-  res.header("Access-Control-Allow-Methods", 'PUT, POST, GET, OPTIONS, DELETE');
-  next();
-});
+// app.use('*', function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Content-Type, Content-Length, Authorization, Accept, Token");
+//   res.header("Access-Control-Allow-Methods", 'PUT, POST, GET, OPTIONS, DELETE');
+//   next();
+// });
 
 app.use(passport.initialize());
 app.use(passport.session());
-require('./config/auth')(passport);
+// require('./config/auth')(passport);
 
 // ROUTES
 app.use('/', require('./routes/index'));

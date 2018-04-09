@@ -1,8 +1,6 @@
 var mongoose = require('mongoose');
-var User = require('./User');
+mongoose.Promise = global.Promise;
 
 mongoose.connect('mongodb://localhost/stringz', { promiseLibrary: global.Promise });
 
-module.exports = {
-  User: User
-};
+module.exports.User = require("./User");

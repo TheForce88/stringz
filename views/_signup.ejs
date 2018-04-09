@@ -1,23 +1,16 @@
 <div>
-  <form action="/signu[]" method="post">
-    <fieldset>
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="username" name="username" class="form-control" id="password" placeholder="Username">
-      </div>
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" name="email" class="form-control" id="email" placeholder="Enter Email">
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" name="password" class="form-control" id="password" placeholder="Password">
-      </div>
-      <div class="form-group">
-        <label for="password">Confirm Password</label>
-        <input type="password" name="confirmPassword" class="form-control" id="confirmPassword" placeholder="Confirm Password">
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </fieldset>
+  <form method="POST" action="/signup">
+    <div class="form-group">
+      <input type="text" name="username" class="form-control" placeholder="Username" autofocus>
+    </div>
+    <div class="form-group">
+      <input type="email" name="email" class="form-control" placeholder="Email" autofocus>
+    </div>
+    <div class="form-group">
+      <input type="password" name="password" class="form-control" placeholder="Password">
+    </div>
+    <div class="form-group">
+      <input type="submit" class="btn btn-block btn-primary" value="Sign Up">
+    </div>
   </form>
 </div>

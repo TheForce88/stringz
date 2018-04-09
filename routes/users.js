@@ -3,14 +3,14 @@ var express = require('express'),
     db = require('../models/index');
 
 // VERIFY AUTHENTICATION
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    console.log("User authenticated.");
-    return next();
-  }
-}
+// function ensureAuthenticated(req, res, next) {
+//   if (req.isAuthenticated()) {
+//     console.log("User authenticated.");
+//     return next();
+//   }
+// };
 
-router.use('/', ensureAuthenticated);
+// router.use('/', ensureAuthenticated);
 
 // ===================================================================
 // ROUTES: REGISTERED USER PAGES - ENSURE AUTHENTICATED
