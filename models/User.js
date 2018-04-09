@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    bcrypt = require('bcrypt');
+    passportLocalMongoose = require("passport-local-mongoose");
 
 var UserSchema = new Schema({
   username: String,
@@ -8,19 +8,7 @@ var UserSchema = new Schema({
   password: String
 });
 
-UserSchema.methods.generateHash = function(password) {
-  // Hash the password and salt it
-  // It will never be seen again
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-};
+UserSchema.plugin(passportLocalMongoose);
 
-// Authenticate the user
-UserSchema.methods.validPassword = function(password) {
-  // Hash the submitted password, and the salt
-  // If it matches the hash in the database, then its valid
-  return bcrypt.compareSync(password, this.password);
-};
-
-var User = mongoose.model('User', UserSchema);
-
+var User = mongoose.model("User", UserSchema);
 module.exports = User;
