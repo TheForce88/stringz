@@ -8,7 +8,7 @@ function ensureAuthenticated(req, res, next) {
     console.log("User authenticated.");
     return next();
   }
-}
+};
 
 router.use('/', ensureAuthenticated);
 

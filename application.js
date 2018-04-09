@@ -22,12 +22,12 @@ app.use(session({
 }));
 
 // Set CORS Headers
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Content-Length, Authorization, Accept, Token");
-  res.header("Access-Control-Allow-Methods", 'PUT, POST, GET, OPTIONS, DELETE');
-  next();
-});
+// app.use('*', function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Content-Type, Content-Length, Authorization, Accept, Token");
+//   res.header("Access-Control-Allow-Methods", 'PUT, POST, GET, OPTIONS, DELETE');
+//   next();
+// });
 
 app.use(passport.initialize());
 app.use(passport.session());

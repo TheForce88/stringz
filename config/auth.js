@@ -30,13 +30,13 @@ module.exports = function(passport) {
     passReqToCallback: true // allows us to pass back the entire request to the callback
   },
     function(req, email, password, done) {
-      if (req.body.confirmPassword != passwprd) {
+      if (req.body.confirmPassword != password) {
         console.log("Passwords do not match.");
         return done(null, false, { 'confirmPassword': 'Passwords do not match. Try again.'})
       }
       // asynchronous
       // User.findOne wont fire unless data is sent back
-      process.nextTrick(function() {
+      process.nextTick(function() {
         User.findOne({ 'email': email }, function(err, user) {
           if (err) { return done(err); }
           if (user) {
