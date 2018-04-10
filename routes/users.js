@@ -30,8 +30,9 @@ router.get('/', function(req, res) {
 });
 
 // Show user
-router.get('/:id', function(req, res) {
-  db.User.findOne(req.body.id, function(err, user) {
+router.get('/show', function(req, res) {
+  console.log(req.params.id);
+  db.User.findOne(req.params.id, function(err, user) {
     if (err) {
       console.log(err);
       res.status(400).json(err);
