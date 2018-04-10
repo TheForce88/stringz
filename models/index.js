@@ -5,3 +5,5 @@ mongoose.connect('mongodb://localhost/newstringz', { promiseLibrary: global.Prom
 
 module.exports.User = require("./User");
 module.exports.Racquet = require("./Racquet");
+module.exports.Weekday = require("./Weekday");
+module.exports.Inventory = require("./Inventory");

@@ -6,10 +6,11 @@ var RacquetSchema = new Schema({
   stringer: String,
   brand: String,
   tension: Number,
-  inventoryItems: Array,
+  // inventoryItems: Array,
   notes: String,
   img: String,
-  completed: Boolean
+  completed: Boolean,
+  inventoryItems: [{ type: Schema.Types.ObjectId, ref: "Inventory"}]
 });
 
 var Racquet = mongoose.model("Racquet", RacquetSchema);
