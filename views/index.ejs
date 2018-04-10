@@ -2,11 +2,17 @@
 <% include ./_nav %>
 
 <div class="container">
-  <h1>Homepage</h1>
 
-  <div class="content">
-    <% include ./_login %>
-  </div>
+  <h1>Stringz</h1>
+  <% if (!user) { %>
+    <p>Please Login</p>
+    <div class="content">
+      <% include ./_login %>
+    </div>
+  <% } else {%>
+
+  <% } %>
+
 </div>
 
 <% include ./_footer %>

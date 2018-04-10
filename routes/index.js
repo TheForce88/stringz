@@ -58,8 +58,7 @@ router.get('/login', function(req, res) {
 router.post('/login', passport.authenticate('local'), function(req, res) {
   console.log("about to athenticate user...");
   // console.log(req.user);
-  res.send("logged in!!!"); // sanity check; take out later
-  // res.redirect('/');
+  res.redirect('/');
 });
 
 // GET logout link
