@@ -178,9 +178,7 @@ db.Inventory.remove({}, function(err, inventory) {
             }
             console.log('saved ' + racquet.inventoryItems + ' to racquet for ' + savedRacquet.owner);
           });
-
         });
-
       });
     });
   });
