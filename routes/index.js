@@ -25,12 +25,10 @@ router.get('/healthcheck', function(req, res) {
 // Homepage
 router.get('/',verifyToken, function(req, res) {
   if(req.user){
-    res.render('index', { user: req.user ,auth:true})
+    res.render('index', { user: req.user ,auth:true })
   }
   res.render('index',{user:req.user});
-
 });
-
 
 router.post('/login',verifyToken, function(req, res) {
 if(req.user)
@@ -54,7 +52,6 @@ res.redirect('/');
     // return the information including token as JSON
     // res.status(200).send({ auth: true, token: token });
     res.render('index', { auth: true, user: token });
-
     // res.redirect("/");
   });
 
@@ -64,6 +61,19 @@ router.get('/logout', function(req, res) {
   res.cookie('token','');
   res.redirect('/');
 });
+
+// now wont redirect to home page--just goes to show
+// router.get('/show',verifyToken, function(req, res) {
+//   if(req.user){
+//     res.render('users/show', { user: req.user ,auth:true})
+//   }
+//   res.render('users/show',{user:req.user});
+// });
+
+// router.get('/show', verifyToken, function(req, res) {
+//   console.log('Cookies', req.cookies);
+//   res.render('users/show', { user: req.user, auth:true });
+// })
 
 router.post('/signup', function(req, res) {
 

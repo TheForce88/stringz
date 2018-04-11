@@ -1,18 +1,16 @@
 <% include ./_header %>
-<% include ./_nav %>
 
-<div class="container">
-
-  <h1>Stringz</h1>
   <% if (!user) { %>
+    <h1>Stringz</h1>
     <p>Please Login</p>
     <div class="content">
       <% include ./_login %>
     </div>
   <% } else {%>
-
+    <% include ./_nav %>
+    <div class="container">
+      <h1>Stringz</h1>
+    </div>
   <% } %>
-
-</div>
 
 <% include ./_footer %>
