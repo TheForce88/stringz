@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navCollapse" aria-controls="navCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -30,4 +30,35 @@
       <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
+</nav> -->
+
+<nav>
+
+<ul id="slide-out" class="sidenav">
+  <% if (user) { %>
+  <li><div class="user-view">
+    <div class="background">
+      <img src="images/tennis_park.jpg">
+    </div>
+    <a href="#user"><img class="circle" src=""></a>
+    <a href="#name"><span class="white-text name">Welcome, Username</span></a>
+  </div></li>
+  <li><a class="waves-effect" href="#"><i class="material-icons">cloud</i>Home</a></li>
+  <li><a class="waves-effect" href="#"><i class="material-icons">cloud</i>Profile</a></li>
+  <li><a class="waves-effect" href="#"><i class="material-icons">cloud</i>Today's Racquets</a></li>
+  <li><a class="waves-effect" href="#"><i class="material-icons">cloud</i>What's in Stock?</a></li>
+  <li><div class="divider"></div></li>
+  <li><a class="waves-effect" href="/logout"><i class="material-icons">cloud</i>Logout</a></li>
+  <% } else { %>
+    <li><div class="user-view">
+      <div class="background">
+        <img src="images/tennis_park.jpg">
+      </div>
+      <a href="#name"><span class="white-text name">Welcome to Stringz</span></a>
+    </div></li>
+    <li><a class="waves-effect" href="#"><i class="material-icons">cloud</i>Login</a></li>
+    <li><a class="waves-effect" href="#"><i class="material-icons">cloud</i>Signup</a></li>
+  <% } %>
+</ul>
+<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 </nav>
