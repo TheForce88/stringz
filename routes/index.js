@@ -25,10 +25,16 @@ router.get('/healthcheck', function(req, res) {
 // Homepage
 router.get('/',verifyToken, function(req, res) {
   if(req.user){
-    res.render('index', { user: req.user ,auth:true })
+    console.log(req.user);
+    res.render('layout', { user: req.user ,auth:true })
   }
-  res.render('index',{user:req.user});
+  res.render('layout',{user:req.user});
 });
+
+router.get('/getProfile',  function(req, res) {
+    res.json({ user: req.user || 'no such user' , auth:true });
+});
+
 
 router.post('/login',verifyToken, function(req, res) {
 if(req.user)
@@ -48,10 +54,10 @@ res.redirect('/');
       expiresIn: 86400 // expires in 24 hours
     });
     console.log(token);
-    res.cookie('token',token);
+    res.cookie('token',token, {httpOnly:false});
     // return the information including token as JSON
     // res.status(200).send({ auth: true, token: token });
-    res.render('index', { auth: true, user: token });
+    res.render('layout', { auth: true, user: token });
     // res.redirect("/");
   });
 
@@ -61,19 +67,6 @@ router.get('/logout', function(req, res) {
   res.cookie('token','');
   res.redirect('/');
 });
-
-// now wont redirect to home page--just goes to show
-// router.get('/show',verifyToken, function(req, res) {
-//   if(req.user){
-//     res.render('users/show', { user: req.user ,auth:true})
-//   }
-//   res.render('users/show',{user:req.user});
-// });
-
-// router.get('/show', verifyToken, function(req, res) {
-//   console.log('Cookies', req.cookies);
-//   res.render('users/show', { user: req.user, auth:true });
-// })
 
 router.post('/signup', function(req, res) {
 
@@ -98,52 +91,5 @@ router.post('/signup', function(req, res) {
   });
 
 });
-
-// LOGIN and SIGNUP Routes
-// using passport to authenticate
-
-// GET signup form
-// router.get('/signup', function(req, res) {
-//   res.render('users/new', { user: req.user })
-// });
-
-// POST signup form
-// router.post('/signup', function(req, res, next) {
-//   passport.authenticate('local-signup',
-//   {successRedirect: '/', failureRedirect: '/signup'}
-//   )
-// });
-
-// router.post('/signup', function(req, res) {
-//   User.register(new User({ username: req.body.username, }), req.body.password,
-//     function () {
-//       passport.authenticate("local")(req, res, function() {
-//         // res.send("Signed up!!!");
-//         res.redirect("/");
-//       });
-//     }
-//   );
-// });
-
-// GET login form (also available on homepage)
-// router.get('/login', function(req, res) {
-//   console.log("getting login page...");
-//   res.render('index', { user: req.user })
-// });
-
-// POST login form
-// router.post('/login', passport.authenticate('local'), function(req, res) {
-//   console.log("about to athenticate user...");
-//   // console.log(req.user);
-//   res.redirect('/');
-// });
-
-// GET logout link
-// router.get('/logout', function(req, res) {
-//   console.log("BEFORE logout", JSON.stringify(req.user));
-//   req.logout();
-//   console.log("AFTER logout", JSON.stringify(req.user));
-//   res.redirect('/');
-// });
 
 module.exports = router;

@@ -9,6 +9,8 @@ console.log(req.cookies.token);
   var token = req.cookies.token;
   jwt.verify(token, config.secret, function(err, decoded) {
     if (err){
+      console.log("TOKEN GIVEN JWT VERIFY: ", token)
+      console.log("JWT TOKEN NOT VERIFIED ", err)
       req.user=null;
       next();
     }
@@ -19,9 +21,10 @@ console.log(req.cookies.token);
 
       if(!found)
       req.user=null
-      else
-      req.user=found;
-
+      else {
+        req.user=found;
+        console.log("TOKEN FOUND< USER FOUND< : ", req.user)
+      }
         next();
     })
   }
