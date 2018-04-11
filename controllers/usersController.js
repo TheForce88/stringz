@@ -1,38 +1,59 @@
+var express = require('express');
+var router = express.Router();
+var bodyParser = require('body-parser');
 var db = require('../models');
 
-module.exports = {
-  index: function(req, res){
-    db.User.find({}, function(err, allUsers) {
-      if(err){res.status(500).json({"ERROR":"Database Error"})}
-      console.log("allUsers: \n", allUsers)
-      res.json({"users": allUsers})
-    });
-  },
+var VerifyToken = require(__root + 'auth/VerifyToken');
 
-  show: function(req, res){
-    var userId = req.params.id;
-    db.User.findOne({_id: userId}, function(err, user) {
-      if(err){res.json({success:false, message:"username not found"});}
-      res.status(200).json({success: true, user: user});
-    });
-  },
+router.use(bodyParser.urlencoded({ extended: true }));
+// var User = require('./User');
 
-  update: function(req, res){
-    var updateUser = req.body;
-    var userId = req.params.id
-    db.User.findOneAndUpdate({_id: userId}, updatedUser, {new:true}, function(err, updatedUser){
-      if(err){res.status(500).json({"ERROR":"Database Error"})}
-      console.log("updatedUser: \n", updatedUser);
-      res.status(200).json({"user": updatedUser})
+// CREATES A NEW USER
+router.post('/', function (req, res) {
+    db.User.create({
+            name : req.body.name,
+            email : req.body.email,
+            password : req.body.password
+        },
+        function (err, user) {
+            if (err) return res.status(500).send("There was a problem adding the information to the database.");
+            res.status(200).send(user);
+        });
+});
+
+// RETURNS ALL THE USERS IN THE DATABASE
+router.get('/', function (req, res) {
+    db.User.find({}, function (err, users) {
+        if (err) return res.status(500).send("There was a problem finding the users.");
+        res.status(200).send(users);
     });
-  },
-  
-  destroy: function(req, res){
-    var userId = req.params.id
-    db.user.remove({_id: userId}, function(err, removedUser){
-      if(err){res.status(500).json({"ERROR":"Database Error"});}
-      console.log("removedUser: \n", removedUser);
-      res.status(200).json({"user": removedUser});
+});
+
+// GETS A SINGLE USER FROM THE DATABASE
+router.get('/:id', function (req, res) {
+    db.User.findById(req.params.id, function (err, user) {
+        if (err) return res.status(500).send("There was a problem finding the user.");
+        if (!user) return res.status(404).send("No user found.");
+        res.status(200).send(user);
     });
-  }
-};
+});
+
+// DELETES A USER FROM THE DATABASE
+router.delete('/:id', function (req, res) {
+    db.User.findByIdAndRemove(req.params.id, function (err, user) {
+        if (err) return res.status(500).send("There was a problem deleting the user.");
+        res.status(200).send("User: "+ user.name +" was deleted.");
+    });
+});
+
+// UPDATES A SINGLE USER IN THE DATABASE
+// Added VerifyToken middleware to make sure only an authenticated user can put to this route
+router.put('/:id', /* VerifyToken, */ function (req, res) {
+    db.User.findByIdAndUpdate(req.params.id, req.body, {new: true}, function (err, user) {
+        if (err) return res.status(500).send("There was a problem updating the user.");
+        res.status(200).send(user);
+    });
+});
+
+
+module.exports = router;

@@ -1,42 +1,42 @@
-var express = require('express'),
-    router = express.Router(),
-    db = require('../models/index'),
-    apiDocs = require('../docs/api.json');
+// var express = require('express'),
+//     router = express.Router(),
+//     db = require('../models/index'),
+//     apiDocs = require('../docs/api.json');
 
 // GET documentation
-router.get('/', function(req, res) {
-  console.log('Api is working!');
-  res.status(200).json(apiDocs);
-});
+// router.get('/', function(req, res) {
+//   console.log('Api is working!');
+//   res.status(200).json(apiDocs);
+// });
 
 // Users API
 // routes for user api
 
 // GET /api/users
-router.get('/users', function(req, res) {
-  db.User.find({}, function(err, users) {
-    if (err) {
-      console.log(err);
-      res.status(400).json(err);
-    } else {
-      console.log('All users fetched.');
-      res.status(200).json(users);
-    }
-  })
-});
+// router.get('/users', function(req, res) {
+//   db.User.find({}, function(err, users) {
+//     if (err) {
+//       console.log(err);
+//       res.status(400).json(err);
+//     } else {
+//       console.log('All users fetched.');
+//       res.status(200).json(users);
+//     }
+//   })
+// });
 
 // GET /api/user
-router.get('/users/:id', function(req, res) {
-  db.User.findOne(req.body.id, function(err, user) {
-    if (err) {
-      console.log(err);
-      res.status(400).json(err);
-    } else {
-      console.log('User found...');
-      res.status(200).json(user);
-    }
-  })
-});
+// router.get('/users/:id', function(req, res) {
+//   db.User.findOne(req.body.id, function(err, user) {
+//     if (err) {
+//       console.log(err);
+//       res.status(400).json(err);
+//     } else {
+//       console.log('User found...');
+//       res.status(200).json(user);
+//     }
+//   })
+// });
 
 // CREATE /api/users/new
 router.post('/users/new', function(req, res) {
