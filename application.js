@@ -9,7 +9,8 @@ var express = require('express'),
 
 // Require models
 var db = require('./models/index'),
-  User = db.User;
+  User = db.User,
+  Racquet = db.Racquet;
 
 
 // Configure app
@@ -49,12 +50,30 @@ app.get('/api', function (req, res) {
   res.status(200).send('API works.');
 });
 
-var UsersController = require(__root + 'controllers/usersController');
+// User and Auth Controllers
+var UsersController = require('./controllers/usersController');
 app.use('/api/users', UsersController);
 
-var AuthController = require(__root + 'auth/AuthController');
+var AuthController = require('./auth/AuthController');
 app.use('/api/auth', AuthController);
 
-// app.use('/', require('./routes/index'));
+var RacquetsController = require('./controllers/racquetsController');
+// app.use('/api/racquets', RacquetsController);
+app.get('/api/racquets', RacquetsController.index);
+app.post('/api/racquets/', RacquetsController.create);
+app.get('/api/racquets/:id', RacquetsController.show);
+app.put('/api/racquets/:id', RacquetsController.update);
+app.delete('/api/racquets/:id', RacquetsController.destroy);
+
+var InventoryController = require('./controllers/inventoryController');
+app.get('/api/inventory', InventoryController.index);
+app.post('/api/inventory/', InventoryController.create);
+app.get('/api/inventory/:id', InventoryController.show);
+app.put('/api/inventory/:id', InventoryController.update);
+app.delete('/api/inventory/:id', InventoryController.destroy);
+
+// GET USER LOGIN/SIGNUP ROUTES
+app.use('/', require('./routes/index'));
+
 
 module.exports = app;

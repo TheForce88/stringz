@@ -7,7 +7,7 @@ var UserSchema = new Schema({
   email: String,
   password: String,
   workerTypeIsStringer: Boolean,
-  racquets: [{ type: Schema.Types.ObjectId, ref: "Racquet"}],
+  racquets: [{ type: Schema.Types.Array, ref: "Racquet"}],
   workdays: [{ type: Schema.Types.ObjectId, ref: "Weekday"}]
 });
 

@@ -1,16 +1,24 @@
-<div>
-  <form method="POST" action="/signup">
-    <div class="form-group">
-      <input type="text" name="username" class="form-control" placeholder="Username" autofocus>
+<!-- SIGNUP Modal Trigger -->
+<a class="waves-effect waves-light btn modal-trigger btn-large" href="#modal3">Sign Up</a>
+
+<!-- Modal Structure -->
+<div id="modal3" class="modal">
+  <div class="modal-content">
+    <div>
+      <form method="POST" action="/signup">
+        <div class="form-group">
+          <input type="text" name="name" class="form-control" placeholder="Username" autofocus>
+        </div>
+        <div class="form-group">
+          <input type="email" name="email" class="form-control" placeholder="Email" autofocus>
+        </div>
+        <div class="form-group">
+          <input type="password" name="password" class="form-control" placeholder="Password">
+        </div>
+        <div class="form-group">
+          <input type="submit" class="btn btn-block btn-primary" value="Sign Up">
+        </div>
+      </form>
     </div>
-    <div class="form-group">
-      <input type="email" name="email" class="form-control" placeholder="Email" autofocus>
-    </div>
-    <div class="form-group">
-      <input type="password" name="password" class="form-control" placeholder="Password">
-    </div>
-    <div class="form-group">
-      <input type="submit" class="btn btn-block btn-primary" value="Sign Up">
-    </div>
-  </form>
+  </div>
 </div>

@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
 
 var RacquetSchema = new Schema({
   owner: String,
-  stringer: String,
+  stringer: { type: Schema.Types.ObjectId, ref: "User"},
   brand: String,
   tension: Number,
   request: String,
@@ -11,7 +11,7 @@ var RacquetSchema = new Schema({
   notes: String,
   img: String,
   completed: Boolean,
-  inventoryItems: [{ type: Schema.Types.ObjectId, ref: "Inventory"}]
+  inventoryItems: [{ type: Schema.Types.Array, ref: "Inventory"}]
 });
 
 var Racquet = mongoose.model("Racquet", RacquetSchema);
