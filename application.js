@@ -2,11 +2,10 @@ var express = require('express'),
     app = express(),
     logger = require('morgan'),
     // methodOverride = require("method-override"),
-    bodyParser = require('body-parser');
-    cookieParser = require('cookie-parser');
-    // session = require('express-session'),
-    // passport = require('passport'),
-    // LocalStrategy = require('passport-local').Strategy;
+    bodyParser = require('body-parser'),
+    cookieParser = require('cookie-parser'),
+    ejsLayouts = require('express-ejs-layouts');
+    // profile = require('./routes/profile.js');
 
 // Require models
 var db = require('./models/index'),
@@ -15,6 +14,7 @@ var db = require('./models/index'),
 
 // Configure app
 app.set('views', __dirname + '/views'); // Views directory
+app.use(ejsLayouts);
 app.use(express.static('public')); // Static directory
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: true })); // to use req.body
@@ -24,21 +24,6 @@ app.set('view engine', 'ejs');
 // app.use(methodOverride("_method"));
 //
 app.use(cookieParser());
-//
-// app.use(session({
-//   secret: 'revelio',
-//   resave: false,
-//   saveUninitialized: false,
-// }));
-// app.use(passport.initialize());
-// app.use(passport.session());
-//
-// passport.use(new LocalStrategy({
-//     email: 'email',
-//     password: 'password'
-//   }, User.authenticate()));
-// passport.serializeUser(User.serializeUser());
-// passport.deserializeUser(User.deserializeUser());
 
 // Set CORS Headers
 // app.use('*', function(req, res, next) {
@@ -48,10 +33,6 @@ app.use(cookieParser());
 //   next();
 // });
 
-// app.use(passport.initialize());
-// app.use(passport.session());
-// require('./config/auth')(passport);
-
 // ROUTES
 app.use('/', require('./routes/index'));
 // app.use('/users', require('./routes/users'));
@@ -59,6 +40,8 @@ app.use('/', require('./routes/index'));
 //
 // module.exports = app;
 
+// GET PROFILE PAGE
+// app.get('/', profile);
 
 global.__root   = __dirname + '/';
 
