@@ -27,6 +27,7 @@ router.get('/healthcheck', function(req, res) {
 
 // Homepage
 router.get('/',verifyToken, function(req, res) {
+  console.log(req.user); // not grabbing user on signup
   if(req.user){
     console.log(req.user);
     res.render('_home', { user: req.user ,auth:true })
@@ -65,7 +66,7 @@ res.redirect('/');
     // return the information including token as JSON
     // res.status(200).send({ auth: true, token: token });
     res.redirect('/');
-    // res.redirect("/");
+    // trying to redirect user to landing page, should work with above logic (get '/') but does not grab user...
   });
 
 });
@@ -75,10 +76,12 @@ router.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
-router.post('/signup', function(req, res) {
+router.post('/signup', verifyToken, function(req, res) {
 
   console.log(req.body.password)
   var hashedPassword = bcrypt.hashSync(req.body.password, 8);
+
+  console.log("THIS IS YOUR REC BODY NAME", req.body.name);
 
   User.create({
     name : req.body.name,
@@ -94,7 +97,8 @@ router.post('/signup', function(req, res) {
       expiresIn: 86400 // expires in 24 hours
     });
 
-    res.status(200).send({ auth: true, token: token });
+    // res.status(200).send({ auth: true, token: token });
+    res.redirect('/');
   });
 
 });

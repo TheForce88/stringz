@@ -39,33 +39,33 @@
 // });
 
 // CREATE /api/users/new
-router.post('/users/new', function(req, res) {
-  var password = req.body.password;
-  var usr = new db.User(req.body);
-  usr.encrypt(usr.password);
-  usr.save(function(err, user) {
-    if (err) {
-      console.log(err);
-      res.status(400).json(err);
-    } else {
-      console.log('User created...');
-      res.status(201).json(user);
-    }
-  })
-});
+// router.post('/users/new', function(req, res) {
+//   var password = req.body.password;
+//   var usr = new db.User(req.body);
+//   usr.encrypt(usr.password);
+//   usr.save(function(err, user) {
+//     if (err) {
+//       console.log(err);
+//       res.status(400).json(err);
+//     } else {
+//       console.log('User created...');
+//       res.status(201).json(user);
+//     }
+//   })
+// });
 
 // DELETE /api/user
-router.delete('/users/:id', function(req, res) {
-  db.User.remove(req.body.id, function(err) {
-    if (err) {
-      console.log(err);
-      res.status(400).json({ error: 'Could not remove.' });
-    } else {
-      console.log("User removed.");
-      res.status(200).redirect('/');
-      // redirect to home page after delete
-    }
-  })
-});
+// router.delete('/users/:id', function(req, res) {
+//   db.User.remove(req.body.id, function(err) {
+//     if (err) {
+//       console.log(err);
+//       res.status(400).json({ error: 'Could not remove.' });
+//     } else {
+//       console.log("User removed.");
+//       res.status(200).redirect('/');
+//       // redirect to home page after delete
+//     }
+//   })
+// });
 
-module.exports = router;
+// module.exports = router;
