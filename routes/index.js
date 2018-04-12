@@ -1,4 +1,5 @@
 var express = require('express'),
+    app = express(),
     router = express.Router();
     // session = require('express-session'),
     // passport = require('passport'),
@@ -16,6 +17,8 @@ var cookieParser = require('cookie-parser');
 var verifyToken= require('../auth/VerifyToken');
 // get config file
 
+app.use(cookieParser());
+
 // Website status check ...
 router.get('/healthcheck', function(req, res) {
   console.log('Health check ...');
@@ -26,13 +29,17 @@ router.get('/healthcheck', function(req, res) {
 router.get('/',verifyToken, function(req, res) {
   if(req.user){
     console.log(req.user);
-    res.render('layout', { user: req.user ,auth:true })
-  }
-  res.render('layout',{user:req.user});
+    res.render('_home', { user: req.user ,auth:true })
+  }else{
+  res.render('_landing',{user:null});
+}
 });
 
-router.get('/getProfile',  function(req, res) {
-    res.json({ user: req.user || 'no such user' , auth:true });
+router.get('/getProfile',verifyToken,  function(req, res) {
+if(!req.user){
+res.redirect('/')
+}
+res.render('profile',{user:req.user});
 });
 
 
@@ -57,7 +64,7 @@ res.redirect('/');
     res.cookie('token',token, {httpOnly:false});
     // return the information including token as JSON
     // res.status(200).send({ auth: true, token: token });
-    res.render('layout', { auth: true, user: token });
+    res.redirect('/');
     // res.redirect("/");
   });
 

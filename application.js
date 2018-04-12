@@ -4,8 +4,8 @@ var express = require('express'),
     // methodOverride = require("method-override"),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
-    ejsLayouts = require('express-ejs-layouts'),
-    profile = require('./routes/profile.js');
+    ejsLayouts = require('express-ejs-layouts');
+    // profile = require('./routes/profile.js');
 
 // Require models
 var db = require('./models/index'),

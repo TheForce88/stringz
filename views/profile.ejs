@@ -1,2 +1,75 @@
-<h1>User Profile</h1>
-<h3>Welcome, Username</h3>
+<div class="container-profile">
+
+  <div class="profile-header">
+    <div class="overlay">
+      <div class="header-top">
+        <img class="profile-pic" src="images/tennis_dude.jpg">
+          <% if (user) { %>
+          <h1 class="profile-title"><%= user.name %></h1>
+          <% } %>
+        <% include ./_racquetForm %>
+      </div>
+    </div>
+  </div>
+
+    <!-- <div class="wrapper">
+            <div class="container">
+            	<div class="row">
+                    <div class="col-md-12">
+                    <header id="header">
+
+      <div class="slider">
+      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <img src="images/tennis_dude.jpg">
+        </div>
+        <div class="item">
+          <img src="tennis_winter.jpg">
+        </div>
+      </div> -->
+
+  <div class="media">
+    <div class="media-left"><img src="" alt=""></div>
+      <div class="media-body">
+        <h3>Recent Stringz</h3>
+        <ul class="collection">
+          <li class="collection-item avatar">
+            <img src="images/tennis_dude.jpg" alt="" class="circle">
+            <span class="title">Title</span>
+            <p>First Line <br>
+               Second Line
+            </p>
+            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+          </li>
+          <li class="collection-item avatar">
+            <img src="images/profile1.jpg" alt="" class="circle">
+            <span class="title">Title</span>
+            <p>First Line <br>
+               Second Line
+            </p>
+            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+          </li>
+          <li class="collection-item avatar">
+            <img src="images/profile2.jpg" alt="" class="circle">
+            <span class="title">Title</span>
+            <p>First Line <br>
+               Second Line
+            </p>
+            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+          </li>
+          <li class="collection-item avatar">
+            <img src="images/profile3.jpg" alt="" class="circle">
+            <span class="title">Title</span>
+            <p>First Line <br>
+               Second Line
+            </p>
+            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+          </li>
+        </ul>
+      </div>
+      <hr></hr>
+  </div>
+
+</div>
