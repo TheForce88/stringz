@@ -64,7 +64,7 @@ router.get('/getInventory',verifyToken, function(req, res) {
   Inventory.find({}, function(err, inventory){
     if (err) return res.status(500).send('Error on the server.');
     else
-    res.render('inventory',{user:req.user, inventory:inventory});
+    res.render('Inventory',{user:req.user, inventory:inventory});
   })
 });
 
