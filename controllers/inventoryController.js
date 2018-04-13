@@ -5,7 +5,7 @@ module.exports = {
   index: function(req,res){
     db.Inventory.find({}, function(err, allInventoryItems){
       if(err){res.status(500).json({"ERROR":"Database Error"})}
-      console.log("allInventoryItems: \n", allInventoryItems)
+      // console.log("allInventoryItems: \n", allInventoryItems)
       res.json({"inventoryItems": allInventoryItems})
     });
   },

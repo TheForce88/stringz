@@ -1,1 +1,15 @@
-<h1>This is the racquets page!!!</h1>
+<div class="container-racquets">
+
+  <div class="racquets-header">
+      <h1>Racquets</h1>
+  </div>
+
+  <div>
+    <ul class="racquetCollection">
+      <% for (var racquet of racquets) { %>
+        <p><%= racquet.owner %></p>
+      <% } %>
+    </ul>
+  </div>
+
+</div>

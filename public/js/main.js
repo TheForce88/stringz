@@ -10,10 +10,10 @@ $(document).ready(function(){
   // });
 
     $.ajax({
-      url:"/api/inventory",
-      method: "GET",
+      url:'/api/inventory',
+      method: 'GET',
       success: function(json) {
-        console.log("HERE IS YOUR DAMN DATA", json);
+        console.log("HERE IS YOUR INVENTORY DATA", json);
         var data = {};
         json.inventoryItems.forEach(function(item, idx) {
           data[item.item] = ''
