@@ -117,6 +117,19 @@ h3 {
   font-size: 20px;
 }
 
+/******************
+ Racquets Page
+*******************/
+.racquets-header h1 {
+  font-size: 35px;
+  color: black;
+  text-transform: capitalize;
+}
+
+.container-racquets {
+  margin-top: 10px;
+}
+
 /* ----------------------------------------
 Base Styles
 ------------------------------------------- */

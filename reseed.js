@@ -1,24 +1,4 @@
 var db = require('./models/index');
-var racquetsList = [
-  {
-    owner: "Devin Smith",
-    brand: "Wilson",
-    tension: 56,
-    request: "Nxt 16",
-    notes: "Would like to pick up on Friday",
-    img: "",
-    completed: false
-  },
-  {
-    owner: "Kyle Flask",
-    brand: "Babolat",
-    tension: 52,
-    request: "Alu Power Soft 17",
-    notes: "Requests one piece stringing",
-    img: "",
-    completed: true
-  }
-];
 
 var weekdayList = [
   {day: "Monday"},
@@ -101,17 +81,26 @@ var inventoryList = [
 
 
 
-// db.Racquet.remove({}, function(err) {
-//   if(err) {
-//     console.log('Error occured in remove', err);
-//   } else {
-//     console.log('removed all racquets');
-//     db.Racquet.create(racquetsList, function(err, racquets) {
-//       if (err) { return console.log('err', err); }
-//       console.log("created", racquets.length, "racquets");
-//     });
-//   }
-// });
+db.Inventory.remove({}, function(err) {
+  if(err) {
+    console.log('Error occured in remove', err);
+  } else {
+    console.log('removed all inventory items');
+    db.Inventory.create(inventoryList, function(err, inventory) {
+      if (err) { return console.log('err', err); }
+      console.log("created", inventory.length, "inventory items");
+    });
+  }
+});
+
+db.Racquet.remove({}, function(err) {
+  if(err) {
+    console.log('Error occured in remove', err);
+  } else {
+    console.log('removed all racquets');
+  }
+});
+
 
 db.Weekday.remove({}, function(err) {
   if(err) {
@@ -125,49 +114,49 @@ db.Weekday.remove({}, function(err) {
   }
 });
 
-db.Inventory.remove({}, function(err, inventory) {
-
-  console.log("removed all inventory items");
-
-  db.Inventory.create(inventoryList, function(err, inventory){
-    if (err) {
-      console.log(err);
-      return;
-    }
-
-    console.log('reacreated all inventory items');
-    console.log('stocked', inventory.length, 'inventory items');
-
-    db.Racquet.remove({}, function(err, racquet){
-
-      console.log('removed all racquets');
-
-      racquetsList.forEach(function (racquetData) {
-        var racquet = new db.Racquet({
-          owner: racquetData.owner,
-          brand: racquetData.brand,
-          tension: racquetData.tension,
-          notes: racquetData.note,
-          img: racquetData.img,
-          completed: racquetData.complete,
-        });
-
-        db.Inventory.find({ item: racquetData.request }, function(err, racquetInventory) {
-          racquet.inventoryItems = racquetInventory;
-
-          if (err) {
-            console.log(err);
-            return;
-          }
-
-          racquet.save(function(err, savedRacquet) {
-            if (err) {
-              return console.log(err);
-            }
-            console.log('saved ' + racquet.inventoryItems + ' to racquet for ' + savedRacquet.owner);
-          });
-        });
-      });
-    });
-  });
-});
+// db.Inventory.remove({}, function(err, inventory) {
+//
+//   console.log("removed all inventory items");
+//
+//   db.Inventory.create(inventoryList, function(err, inventory){
+//     if (err) {
+//       console.log(err);
+//       return;
+//     }
+//
+//     console.log('reacreated all inventory items');
+//     console.log('stocked', inventory.length, 'inventory items');
+//
+//     db.Racquet.remove({}, function(err, racquet){
+//
+//       console.log('removed all racquets');
+//
+//       racquetsList.forEach(function (racquetData) {
+//         var racquet = new db.Racquet({
+//           owner: racquetData.owner,
+//           brand: racquetData.brand,
+//           tension: racquetData.tension,
+//           notes: racquetData.note,
+//           img: racquetData.img,
+//           completed: racquetData.complete,
+//         });
+//
+//         db.Inventory.find({ item: racquetData.request }, function(err, racquetInventory) {
+//           racquet.inventoryItems = racquetInventory;
+//
+//           if (err) {
+//             console.log(err);
+//             return;
+//           }
+//
+//           racquet.save(function(err, savedRacquet) {
+//             if (err) {
+//               return console.log(err);
+//             }
+//             console.log('saved ' + racquet.inventoryItems + ' to racquet for ' + savedRacquet.owner);
+//           });
+//         });
+//       });
+//     });
+//   });
+// });

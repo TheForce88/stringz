@@ -12,7 +12,7 @@ module.exports = {
 
   show: function(req,res){
     var racquetId = req.params.id;
-    db.Racquet.findOne({_id: racquetId}, function(err, foundRacquet){
+    db.Racquet.findOne({_id: racquetId}).populate("inventoryItems").exec(function(err, foundRacquet){
       if(err){res.status(500).json({"ERROR":"Database Error"});}
       console.log("foundRacquet: \n", foundRacquet);
       res.status(200).json({"racquets": foundRacquet});

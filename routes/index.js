@@ -7,7 +7,8 @@ var express = require('express'),
 
 //Require models
 var db = require('../models/index'),
-      User = db.User;
+      User = db.User,
+      Racquet = db.Racquet;
 
 // require('../config/auth')(passport);
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
@@ -43,6 +44,17 @@ res.redirect('/')
 res.render('profile',{user:req.user});
 });
 
+router.get('/getRacquets',verifyToken, function(req, res) {
+  if(!req.user){
+    res.redirect('/')
+  }
+  console.log('HERE ARE THE RACQUETS',req.user.racquets);
+  Racquet.find({}, function(err, racquets){
+    if (err) return res.status(500).send('Error on the server.');
+    res.render('racquets',{user:req.user, racquets: racquets});
+  })
+
+});
 
 router.post('/login',verifyToken, function(req, res) {
 if(req.user)

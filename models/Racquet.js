@@ -3,15 +3,16 @@ var mongoose = require('mongoose'),
 
 var RacquetSchema = new Schema({
   owner: String,
-  stringer: { type: Schema.Types.ObjectId, ref: "User"},
+  stringer: { type: Schema.Types.ObjectId, ref: "User" },
   brand: String,
   tension: Number,
   request: String,
-  dropOffDay: [{ type: Schema.Types.ObjectId, ref: "Weekday"}],
+  dropOffDay: { type: Schema.Types.ObjectId, ref: "Weekday" },
   notes: String,
   img: String,
   completed: Boolean,
-  inventoryItems: [{ type: Schema.Types.Array, ref: "Inventory"}]
+  inventoryItems: [String]
+  // inventoryItems: [{ type: Schema.Types.Array, ref: "Inventory" }]
 });
 
 var Racquet = mongoose.model("Racquet", RacquetSchema);

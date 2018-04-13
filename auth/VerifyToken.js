@@ -1,7 +1,9 @@
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('../config'); // get our config file
 var User = require('../models/User');
+var Racquet = require('../models/Racquet');
 var cookieParser = require('cookie-parser');
+
 
 function verifyToken(req, res, next) {
 console.log(req.cookies.token);
@@ -22,10 +24,15 @@ console.log(req.cookies.token);
       if(!found)
       req.user=null
       else {
-        req.user=found;
+        Racquet.find({stringer:found}).populate('stringer').exec(function(err,racquets){
+          req.user=found;
+          req.user.racquets=racquets;
+          next();
+        })
+
         console.log("TOKEN FOUND< USER FOUND< : ", req.user)
       }
-        next();
+
     })
   }
 
