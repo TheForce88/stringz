@@ -26,12 +26,13 @@ module.exports = {
       console.log(found);
       if(!found){
         res.status(500).json({message:'not found'})
-      }else{
+      } else {
         newRacquet.stringer=found
         db.Racquet.create(newRacquet, function(err, newRacquet){
           if(err){res.status(500).json({"ERROR":"Database Error"});}
           console.log("newRacquet: \n", newRacquet);
-          res.status(200).json({"racquet": newRacquet});
+          // res.status(200).json({"racquet": newRacquet});
+          res.redirect('/getProfile');
         });
       }
     })
