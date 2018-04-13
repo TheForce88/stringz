@@ -38,10 +38,10 @@ router.get('/',verifyToken, function(req, res) {
 });
 
 router.get('/getProfile',verifyToken,  function(req, res) {
-if(!req.user){
-res.redirect('/')
-}
-res.render('profile',{user:req.user});
+  if(!req.user){
+    res.redirect('/')
+  }
+  res.render('profile',{user:req.user});
 });
 
 router.get('/getRacquets',verifyToken, function(req, res) {
