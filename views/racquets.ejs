@@ -9,15 +9,16 @@
     <div class="media-body">
       <ul class="collection">
         <% for (var racquet of racquets) { %>
-        <li class="collection-item avatar">
-          <img src="images/tennis_dude.jpg" alt="" class="circle">
-          <span class="title"><%= racquet.owner %></span>
-          <% for (var inventoryItems of racquet.inventoryItems) { %>
-            <p><%= inventoryItems %></p>
+          <li class="collection-item avatar">
+            <img src="images/profile3.jpg" alt="" class="circle">
+            <span class="title"><%= racquet.owner %></span>
+            <% for (var inventoryItems of racquet.inventoryItems) { %>
+              <p><%= inventoryItems %></p>
+            <% } %>
+            <p><%= racquets.tension %></p>
+            <a href="#!" class="secondary-content"><i class="material-icons">more</i></a>
           <% } %>
-          <p><%= racquets.tension %></p>
-          <a href="#!" class="secondary-content"><i class="material-icons">more</i></a>            </li>
-          <% } %>
+        </li>
       </ul>
     </div>
   </div>

@@ -1,6 +1,7 @@
 $(document).ready(function(){
   $('.sidenav').sidenav();
   $('.modal').modal();
+  $('.collapsible').collapsible();
   // $('input.autocomplete').autocomplete({
   //   data: {
   //     "Nxt 16": null,
