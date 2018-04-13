@@ -7,9 +7,10 @@
       <ul class="collapsible">
         <% for (var inventory of inventory) { %>
           <li>
-            <div class="collapsible-header inventory-box"><i class="material-icons">filter_drama</i>
+            <div class="collapsible-header inventory-box"><i class="material-icons">business</i>
               <p><%= inventory.item %></p>
               <p><%= inventory.brand %></p>
+              <p><%= inventory.onHand %></p>
               <p><%= inventory.price %></p>
             </div>
             <div class="collapsible-body"><span><p><%= inventory.description %></p></span></div>
