@@ -63,6 +63,7 @@ router.get('/getInventory',verifyToken, function(req, res) {
   // console.log('HERES ALL THE INVENTORY', req.inventory);
   Inventory.find({}, function(err, inventory){
     if (err) return res.status(500).send('Error on the server.');
+    else
     res.render('inventory',{user:req.user, inventory:inventory});
   })
 });
