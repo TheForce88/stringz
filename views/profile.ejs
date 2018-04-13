@@ -15,12 +15,11 @@
   <div class="media">
     <div class="media-left"><img src="" alt=""></div>
       <div class="media-body">
-        <h3>Recent Stringz</h3>
+        <h3>My Racquets</h3>
         <ul class="collection">
 
-          <% for (var racquetss of user.racquets ) { %>
-            <% for (var racquets of racquetss ) { %>
-
+          <% for (var racquetss of user.racquets) { %>
+            <% for (var racquets of racquetss) { %>
               <li class="collection-item avatar">
                 <img src="images/tennis_dude.jpg" alt="" class="circle">
                 <span class="title"><%= racquets.owner %></span>
@@ -28,7 +27,7 @@
                   <p><%= inventoryItems %></p>
                 <% } %>
                 <p><%= racquets.tension %></p>
-                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                <a href="#!" class="secondary-content"><i class="material-icons">more</i></a>
               </li>
 
             <% } %>
