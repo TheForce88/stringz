@@ -2,19 +2,12 @@ $(document).ready(function(){
   $('.sidenav').sidenav();
   $('.modal').modal();
   $('.collapsible').collapsible();
-  // $('input.autocomplete').autocomplete({
-  //   data: {
-  //     "Nxt 16": null,
-  //     "RPM Blast": null,
-  //     "Pro Hurricane": 'https://placehold.it/250x250'
-  //   },
-  // });
 
     $.ajax({
       url:'/api/inventory',
       method: 'GET',
       success: function(json) {
-        console.log("HERE IS YOUR INVENTORY DATA", json);
+        // console.log("HERE IS YOUR INVENTORY DATA", json);
         var data = {};
         json.inventoryItems.forEach(function(item, idx) {
           data[item.item] = ''
