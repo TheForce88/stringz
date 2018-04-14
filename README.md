@@ -30,4 +30,4 @@ Racquets Page:
 - An admin can do everything a user can do, but also has the ability to EDIT the work schedule
 
 ##See the final app deployed on Heroku
--[Heroku Link](https://protected-hollows-53369.herokuapp.com/)
+- [Heroku Link](https://protected-hollows-53369.herokuapp.com/)
