@@ -15,8 +15,7 @@ console.log(req.cookies.token);
       console.log("JWT TOKEN NOT VERIFIED ", err)
       req.user=null;
       next();
-    }
-    else{
+    } else {
     // if everything is good, save to request for use in other routes
     let id = decoded.id;
     User.findOne({_id : id},function(err,found){

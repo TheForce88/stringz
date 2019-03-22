@@ -99,20 +99,6 @@ var inventoryList = [
   },
 ];
 
-
-
-// db.Racquet.remove({}, function(err) {
-//   if(err) {
-//     console.log('Error occured in remove', err);
-//   } else {
-//     console.log('removed all racquets');
-//     db.Racquet.create(racquetsList, function(err, racquets) {
-//       if (err) { return console.log('err', err); }
-//       console.log("created", racquets.length, "racquets");
-//     });
-//   }
-// });
-
 db.Weekday.remove({}, function(err) {
   if(err) {
     console.log('Error occured in remove', err);

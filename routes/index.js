@@ -16,7 +16,7 @@ var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var bcrypt = require('bcryptjs');
 var config = require('../config');
 var cookieParser = require('cookie-parser');
-var verifyToken= require('../auth/VerifyToken');
+var verifyToken = require('../auth/VerifyToken');
 // get config file
 
 app.use(cookieParser());
@@ -28,35 +28,35 @@ router.get('/healthcheck', function(req, res) {
 });
 
 // Homepage
-router.get('/',verifyToken, function(req, res) {
+router.get('/', verifyToken, function(req, res) {
   console.log(req.user); // not grabbing user on signup
   if(req.user){
     console.log(req.user);
-    res.render('_home', { user: req.user ,auth:true })
-  }else{
-  res.render('_landing',{user:null});
-}
+    res.render('_home', { user: req.user, auth:true })
+  } else {
+  res.render('_landing', { user:null });
+  }
 });
 
-router.get('/getProfile',verifyToken,  function(req, res) {
+router.get('/getProfile', verifyToken, function(req, res) {
   if(!req.user){
     res.redirect('/')
   }
-  res.render('profile',{user:req.user});
+  res.render('profile', { user:req.user });
 });
 
-router.get('/getRacquets',verifyToken, function(req, res) {
+router.get('/getRacquets', verifyToken, function(req, res) {
   if(!req.user){
     res.redirect('/')
   }
-  console.log('HERE ARE THE RACQUETS',req.user.racquets);
+  console.log('HERE ARE THE RACQUETS', req.user.racquets);
   Racquet.find({}, function(err, racquets){
     if (err) return res.status(500).send('Error on the server.');
-    res.render('racquets',{user:req.user, racquets: racquets});
+    res.render('racquets', { user:req.user, racquets:racquets });
   })
 });
 
-router.get('/getInventory',verifyToken, function(req, res) {
+router.get('/getInventory', verifyToken, function(req, res) {
   if(!req.user){
     res.redirect('/')
   }
@@ -64,11 +64,11 @@ router.get('/getInventory',verifyToken, function(req, res) {
   Inventory.find({}, function(err, inventory){
     if (err) return res.status(500).send('Error on the server.');
     else
-    res.render('Inventory',{user:req.user, inventory:inventory});
+    res.render('Inventory',{ user:req.user, inventory:inventory });
   })
 });
 
-router.post('/login',verifyToken, function(req, res) {
+router.post('/login', verifyToken, function(req, res) {
 if(req.user)
 res.redirect('/');
   User.findOne({ email: req.body.email }, function (err, user) {

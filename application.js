@@ -36,13 +36,6 @@ app.use(cookieParser());
 
 // ROUTES
 app.use('/', require('./routes/index'));
-// app.use('/users', require('./routes/users'));
-// app.use('/api', require('./routes/api'));
-//
-// module.exports = app;
-
-// GET PROFILE PAGE
-// app.get('/', profile);
 
 global.__root   = __dirname + '/';
 
